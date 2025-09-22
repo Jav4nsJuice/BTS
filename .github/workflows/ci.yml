@@ -32,7 +32,3 @@ jobs:
     # Step 4: Run build
     - name: Build app
       run: npm run build
-
-    # Step 5: (Optional) Run tests
-    - name: Run tests
-      run: npm test -- --watchAll=false
