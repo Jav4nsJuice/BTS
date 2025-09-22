@@ -1,0 +1,38 @@
+name: CI/CD Build
+
+on:
+  push:
+    branches:
+      - development
+      - production
+  pull_request:
+    branches:
+      - development
+      - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Setup Node
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Run build
+    - name: Build app
+      run: npm run build
+
+    # Step 5: (Optional) Run tests
+    - name: Run tests
+      run: npm test -- --watchAll=false
